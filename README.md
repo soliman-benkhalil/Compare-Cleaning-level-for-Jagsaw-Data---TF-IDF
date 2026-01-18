@@ -1,38 +1,51 @@
 # Compare-Cleaning-level-for-Jagsaw-Data---TF-IDF
-This project compares light vs deep text cleaning strategies on the Jigsaw Toxic Comments dataset, showing how preprocessing depth directly impacts neural network performance in NLP classification tasks.
 
-# Text Cleaning Depth vs Model Performance  
+This project compares light vs deep text cleaning strategies on the Jigsaw Toxic Comments dataset, showing how both **preprocessing depth and model capacity** impact neural network performance and convergence in NLP classification tasks.
+
+---
+
+## Text Cleaning Depth vs Model Performance  
 **Toxic Comment Classification (Jigsaw Dataset)**
 
-This project studies how different levels of text preprocessing affect the performance and convergence behavior of a deep learning model in a toxic comment classification task.
+This project studies how different levels of text preprocessing affect the performance and convergence behavior of a deep learning model in a toxic comment classification task, while also improving the underlying neural architecture.
 
-Rather than changing the model, this work isolates one variable:
+Rather than changing the task, this work controls two tightly related factors:
 
-> **The depth of text cleaning.**
+- The **depth of text cleaning**
+- The **strength of the neural architecture**
 
 ---
 
 ## 🔍 Project Motivation
 
 Text preprocessing is often treated as a fixed step in NLP pipelines.  
-However, every cleaning decision injects assumptions into the data.
+However, every cleaning decision injects assumptions into the data, and every architectural decision controls how well sparse textual features can be learned.
 
 This project investigates:
+
 - How much cleaning is really beneficial?
 - When does cleaning start to remove useful semantic signal?
-- How does preprocessing depth affect training stability and convergence?
+- How does model capacity interact with preprocessing depth?
+- How does this affect convergence stability?
 
 ---
 
 ## 🧠 Model
 
-- Same neural network architecture for all experiments  
-- Same optimizer, loss function, and training strategy  
-- Input representation: **TF-IDF features**
+Compared to the previous project, the model here is **stronger and deeper**:
 
-Only the **text cleaning pipeline** is changed.
+- TF-IDF feature size increased: **5000 → 8000**
+- Deeper fully-connected architecture
+- Heavy use of **Batch Normalization + Dropout** to control overfitting on sparse text representations
 
-This ensures that performance differences are caused by preprocessing, not by model design.
+All experiments in this repository use:
+
+- The same optimizer and loss function
+- The same training strategy
+
+Only the **cleaning pipeline** is varied between runs.
+
+This ensures that performance differences are primarily driven by preprocessing depth, under a fixed (but improved) model capacity.
 
 ---
 
@@ -67,17 +80,17 @@ Introduces stronger normalization but risks removing semantic and emotional cues
 - Deep cleaning required more epochs and showed slower early learning.
 
 **Conclusion:**  
-Text cleaning is not neutral — it is a modeling choice.
+Text cleaning is not neutral — it is a modeling choice that interacts strongly with model capacity.
 
 ---
 
 ## 📈 Exploratory Data Analysis (EDA)
 
-Detailed dataset analysis, distribution studies, and label exploration were conducted in a separate project:
+Detailed dataset analysis and label distribution studies are provided in a separate project:
 
 👉 https://github.com/soliman-benkhalil/Toxic-Comment-Classification
 
-This repository focuses on the modeling and preprocessing impact rather than dataset exploration.
+This repository focuses on modeling behavior rather than dataset exploration.
 
 ---
 
@@ -85,7 +98,8 @@ This repository focuses on the modeling and preprocessing impact rather than dat
 
 - Python  
 - NLTK  
-- Scikit-learn (TF-IDF)
+- Scikit-learn (TF-IDF)   
+
 ---
 
 ## 🚀 Future Work
@@ -98,4 +112,3 @@ This repository focuses on the modeling and preprocessing impact rather than dat
 ---
 
 If you find this project useful, feel free to ⭐ the repository.
-
